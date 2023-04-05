@@ -43,23 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_framework_api_key',
-    'corsheaders',
     'django_extensions',
-    'apps.cartapp',
-    'background_task',
-    'rest_framework_swagger',
-    'health_check',                            
-    'health_check.db', 
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,9 +71,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries' : {
-                'staticfiles': 'django.templatetags.static', 
-            }
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
@@ -147,7 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'apps.cartapp.utils.custom_exception_handler',
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -168,12 +158,10 @@ except Exception:
     pass
 
 # SURE-309 this is how we can fetch the key vault secret wherever required.
-from apps.cartapp.config import get_secret_from_azure_kv as get_secret
-TWILIO_ID = get_secret('TWILIO_ID', "ABC")
-cerillion_user_test = get_secret('cerillion_user_test')
-NOKEY = get_secret('NOKEY')
-
-
+# from apps.cartapp.config import get_secret_from_azure_kv as get_secret
+# TWILIO_ID = get_secret('TWILIO_ID', "ABC")
+# cerillion_user_test = get_secret('cerillion_user_test')
+# NOKEY = get_secret('NOKEY')
 
 
 # Logging
